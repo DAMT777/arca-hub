@@ -1,0 +1,3 @@
+[submodule "arca-bpm-engine"]
+	path = arca-bpm-engine
+	url = https://github.com/DAMT777/arca-bpm-engine.git
