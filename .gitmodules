@@ -1,3 +1,6 @@
 [submodule "arca-bpm-engine"]
 	path = arca-bpm-engine
 	url = https://github.com/DAMT777/arca-bpm-engine.git
+[submodule "arca-procesos-camunda-run"]
+	path = arca-procesos-camunda-run
+	url = https://github.com/yixx16/bpmn.git
