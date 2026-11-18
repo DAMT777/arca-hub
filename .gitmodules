@@ -4,3 +4,6 @@
 [submodule "arca-procesos-camunda-run"]
 	path = arca-procesos-camunda-run
 	url = https://github.com/yixx16/bpmn.git
+[submodule "arca-servicios"]
+	path = arca-servicios
+	url = https://github.com/DAMT777/arca-servicios.git
