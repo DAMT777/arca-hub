@@ -10,14 +10,20 @@
   - atender un aviso de siniestro;
   - mantener el modelo de score.
 - **Participantes:**
-  - **Externos:** la firma de abogados y el carrier, que asume el riesgo y aprueba las versiones del modelo.
+  - **Externos:**
+    - **La firma de abogados.**
+    - **El broker,** canal principal de venta de ARCA. En C3 comparte con la firma la piscina externa «Firma de abogados y broker» y recibe la decisión y las condiciones de suscripción por medio de C3.1 Notificar la decisión al canal.
+    - **El carrier,** que asume el riesgo y aprueba las versiones del modelo.
   - **Internos:** Jefe de Siniestros, Asesor Jurídico, Suscriptor, Actuario, Director de Suscripción, Ingeniero de Datos y Comité de Modelo.
 - **Procesos incluidos:** C10 Registrar el aviso de siniestro, C3 Suscribir la solicitud y G3 Publicar una versión del modelo de score, con sus procesos invocados por Call Activity:
   - C10.1 Comunicar a la firma;
   - C1 Calcular el Pre-Score;
   - C3.1 Notificar la decisión al canal;
   - S2 Desplegar cambios en plataforma.
-- **Fuera del alcance:** la emisión real de pólizas y el cobro, porque ARCA aún no tiene acuerdo con un carrier. También son simulados el escaneo con OpenAI, la búsqueda con Apify, el backtesting y el despliegue real del modelo. Esos cálculos los hace arca-servicios con reglas de demostración y datos de ejemplo.
+- **Fuera del alcance:**
+  - La emisión real de pólizas y el cobro, porque ARCA aún no tiene acuerdo con un carrier.
+  - El portal del broker y su habilitación (S7 Habilitar brokers): en esta entrega el broker no tiene aplicación propia y la notificación de C3.1 se registra en el log del motor.
+  - Son simulados el escaneo con OpenAI, la búsqueda con Apify, el backtesting y el despliegue real del modelo. Esos cálculos los hace arca-servicios con reglas de demostración y datos de ejemplo.
 
 ## Integrantes y responsables
 
@@ -101,7 +107,8 @@ flowchart LR
 | C3 | Revisar el caso y decidir | Suscriptor | Panel interno |
 | C3 | Analizar el caso y recomendar condiciones | Actuario | Panel interno |
 | C3 | Resolver el caso (revisión senior) | Director de Suscripción | Panel interno |
-| C3 | Cotización · Plan de mejora · Registrar la decisión · C3.1 Notificar | Motor | JavaDelegates → Score Engine y evaluaciones |
+| C3 | Cotización · Plan de mejora · Registrar la decisión | Motor | JavaDelegates → Score Engine y evaluaciones |
+| C3 | C3.1 Notificar la decisión al canal | Motor; el destinatario es el broker | JavaDelegate. El broker no tiene aplicación propia en este alcance |
 | C3 | Resultado: tier, decisión, prima o reevaluación | Firma | Portal → **Mis solicitudes** |
 | G3 | Evento de inicio «Necesidad de una nueva versión» | Actuario Jefe | Panel interno → **Nueva versión del modelo** |
 | G3 | Consolidar la evidencia · Documentar la memoria | Actuario Jefe | Panel interno |
